@@ -1,0 +1,24 @@
+
+  .navbar{
+    background-color:  #5ac063;
+    /* background-color: #42a768; */
+}
+
+.navbar .btn{
+    background-color: #0e491f;
+    color: rgb(255, 255, 255);
+    border-color: transparent;
+}
+
+.navbar .btn:hover {
+    background-color: #0e5e12;
+
+    color: white;
+  }
+
+  /* .dash-nav {
+    color: #fff;
+
+  } */
+  
+  

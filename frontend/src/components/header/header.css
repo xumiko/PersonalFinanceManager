@@ -1,0 +1,17 @@
+.navbar{
+    background-color:  #5ac063;
+    /* background-color: #42a768; */
+}
+
+.navbar .btn{
+    background-color: #fff;
+    color: black;
+    border-color: transparent;
+    text-decoration: none;
+}
+
+.navbar .btn:hover {
+    background-color: #0e5e12;
+
+    color: white;
+  }
