@@ -16,6 +16,19 @@
     color: white;
   }
 
+  .navbar .heading{
+    font-size: 30px;
+  }
+
+  .navbar p{
+    font-size: 15px;
+  } 
+
+  .navbar .logout{
+    background-color:rgba(245, 245, 245, 0.747);
+
+  }
+
   /* .dash-nav {
     color: #fff;
 

@@ -4,10 +4,10 @@ import './transaction.css';
 
 const Transaction = ({ onClose, onAddTransaction }) => {
   const [formData, setFormData] = useState({
-    type:'',
+    type: '',
     amount: '',
-    category:'',
-    date:'',
+    category: '',
+    date: '',
     description: '',
   });
 
@@ -21,14 +21,11 @@ const Transaction = ({ onClose, onAddTransaction }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., save to a database or state)
-    console.log(formData);
 
-    onAddTransaction(formData);
+    onAddTransaction(formData); // Pass the form data to the parent (Dashboard)
 
-    // Optionally, you can reset the form after submission
-    setFormData({ type:'', amount: '', category: '', date: '', description: '' });
-    onClose(); // Close the form after submission
+    setFormData({ type: '', amount: '', category: '', date: '', description: '' }); // Reset the form
+    onClose();
   };
 
   return (
@@ -39,16 +36,16 @@ const Transaction = ({ onClose, onAddTransaction }) => {
           <label htmlFor="type">Type:</label>
           <select
             id="type"
-            name="type"
+            name="type" 
             value={formData.type}
             onChange={handleInputChange}
             required
           >
             <option value="">Select a Type</option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
           </select>
-          </div>
+        </div>
 
         <div className="form-group">
           <label htmlFor="amount">Amount:</label>
@@ -61,6 +58,7 @@ const Transaction = ({ onClose, onAddTransaction }) => {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="category">Category:</label>
           <select
@@ -70,14 +68,16 @@ const Transaction = ({ onClose, onAddTransaction }) => {
             onChange={handleInputChange}
             required
           >
-            <option label="Select a Category"></option>
-            <option value="food">Food</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="transport">Transport</option>
+            <option value="">Select a Category</option>
+            <option value="Food">Food</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Transport">Transport</option>
+            <option value="Others">Others</option>
           </select>
         </div>
+
         <div className="form-group">
-          <label htmlFor="date">Date</label>
+          <label htmlFor="date">Date:</label>
           <input
             type="date"
             id="date"
@@ -87,6 +87,7 @@ const Transaction = ({ onClose, onAddTransaction }) => {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="description">Description:</label>
           <input
@@ -98,10 +99,9 @@ const Transaction = ({ onClose, onAddTransaction }) => {
             required
           />
         </div>
-        <button className=" t-form-btn" type="submit">Submit</button>
-        <button className=" t-form-btn" type="button" onClick={onClose}>
-          Close
-        </button>
+
+        <button className="t-form-btn" type="submit">Submit</button>
+        <button className="t-form-btn" type="button" onClick={onClose}>Close</button>
       </form>
     </div>
   );

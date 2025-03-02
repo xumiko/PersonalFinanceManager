@@ -14,7 +14,7 @@ export const Register = () => {
   const navigate =useNavigate();
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page reload on form submit
 
     if (password !== confirmPassword) {
@@ -25,6 +25,29 @@ export const Register = () => {
         console.log("Email:", email);
         console.log("Password:", password);
         console.log("ConfirmPassword:", confirmPassword);
+        const newUser = {
+          name: username,
+          email,
+          password,
+        };
+        try {
+          const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newUser),
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            // Store the JWT token in localStorage
+            localStorage.setItem('authToken', data.token);
+            navigate('/dashboard');
+          } else {
+            console.log('Error registering user');
+          }
+        } catch (error) {
+          console.error('Error registering:', error);
+        }
       }  
       navigate('/dashboard');
   };

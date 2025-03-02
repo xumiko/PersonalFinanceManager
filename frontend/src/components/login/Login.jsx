@@ -13,7 +13,7 @@ export const Login = ({onLogin}) => {
   const navigate =useNavigate();
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
@@ -21,7 +21,32 @@ export const Login = ({onLogin}) => {
     onLogin();
 
     navigate('/dashboard');
-  };
+
+    try {
+      const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          // Store the JWT token in localStorage
+          localStorage.setItem('authToken', data.token);
+          console.log('Login successful, token saved!');
+          // Optionally redirect to dashboard or home
+          window.location.href = '/dashboard';
+      } else {
+          console.log('Invalid credentials');
+      }
+  } catch (error) {
+      console.error('Error logging in:', error);
+  }
+};
+
+
 
 
   return (

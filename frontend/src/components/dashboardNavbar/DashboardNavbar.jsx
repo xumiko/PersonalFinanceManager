@@ -7,7 +7,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
-const DashboardNavbar = ( {onLogout} ) => {
+const DashboardNavbar = ({onLogout}) => {
+
+
+    // Remove token from localStorage
+    localStorage.removeItem('authToken');
+    console.log('Logged out!');
+    
+    // Redirect to login page after logging out
+    // window.location.href = '/login'; // or use React Router's `history.push('/login')`
+
+
     return (
     //   <nav className="dashboard-navbar">
     //     <ul>
@@ -20,21 +30,25 @@ const DashboardNavbar = ( {onLogout} ) => {
 
        <Navbar expand="lg" className="navbar">
        <Container className='dash-nav'>
-         <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
+         <Navbar.Brand className='heading' href="/dashboard">Dashboard
+         <p>monitor your financial activities</p>
+         </Navbar.Brand>
+         
          <Navbar.Toggle aria-controls="basic-navbar-nav" />
          <Navbar.Collapse id="basic-navbar-nav">
-           <Nav className="me-auto">
+           <Nav className="mx-auto">
              <Nav.Link as={Link} to="/">Home</Nav.Link> 
              <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+             <Nav.Link as={Link} to="/profile">Transactions</Nav.Link> 
 {/* 
-             <Nav.Link as={Link} to="/profile">Add Transaction</Nav.Link> 
+            
              <Nav.Link as={Link} to="/profile">Add Category</Nav.Link> 
              <Nav.Link as={Link} to="/profile">Categories</Nav.Link>  */}
 
              <Nav.Link as={Link} to="/notFound">Settings</Nav.Link>
            </Nav>
            <Nav className="ms-auto">
-             <Button><a href="/" onClick={onLogout}>Logout</a></Button> 
+             <Button  className='logout'><a href="/" onClick={onLogout}>Logout</a></Button> 
            </Nav>
          </Navbar.Collapse>
        </Container>

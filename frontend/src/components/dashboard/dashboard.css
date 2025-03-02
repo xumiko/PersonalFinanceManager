@@ -8,7 +8,6 @@
 .button-container {
     display: flex;              
     justify-content: center; 
-    gap:20px;
     align-items: center;     
     margin-top: 20px;   
   }
